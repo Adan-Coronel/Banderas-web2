@@ -3,7 +3,7 @@ const preguntas = ['¿Cual es el país de la siguiente ciudad capital?',
     'El país xx esta representado por la siguiente bandera ¿?',
     '¿Cuantos países limítrofes tiene el siguiente país?'] // array con las preguntas por los puntos
 const card = document.getElementById('card') // card donde se agregaran las banderas y la pregunta
-
+const btn = document.getElementById('btn')// contenedor donde se deberian guardar los botones
 fetch(url)
     .then(res => res.json())
     .then(data => {
@@ -11,6 +11,7 @@ fetch(url)
         const pais = data[randomPais]; // constante para usar en funciones da el arreglo del paise correcto
         const pregIndex = Math.floor(Math.random() * preguntas.length)              
         let $h2 = document.createElement("h2"); // para agregar la pregunta al html
+        let $h3 = document.createElement("h3"); // para agregar el pais al html
         let $h4 = document.createElement('h4');// para agregar si es correcta la respuesta al html
         let puntaje = { valor: 0 };
         $h2.innerHTML = `${preguntas[pregIndex]} <br>`;
@@ -20,8 +21,8 @@ fetch(url)
             case 0://completo
 
                 const capital = pais.capital // capital a encontrar el pais
-                $h2.innerText += ` ${capital}`
-                card.appendChild($h2)
+                $h3.innerText += ` ${capital}`
+                card.appendChild($h3)
                 paisCapital(pais, data, $h4, puntaje)
                 break;
 
@@ -34,12 +35,10 @@ fetch(url)
                 console.log(randomPais)
                 const nacion = pais.name.official // capital a encontrar el pais
 
-                $h2.innerText += `${nacion} `;
-                card.appendChild($h2)
+                $h3.innerText += `${nacion} `;
+                card.appendChild($h3)
                 paisLimitrofe(pais, $h4, puntaje)
                 break;
-
-
 
         }
     })
@@ -63,13 +62,13 @@ function preguntaBandera(pais, data, $h4, puntaje) {//funcion finalizada para ag
 
     let opciones = [nombreOficial]
     console.log(opciones)
-    crearOpciones(opciones, data, card, $h4, puntaje, pais => pais.name.official)
+    crearOpciones(opciones, data, btn, $h4, puntaje, pais => pais.name.official)
 
 }
 
 function paisCapital(pais, data, $h4, puntaje) {
     const respuestaCorrecta = pais.name.official;
-    crearOpciones(respuestaCorrecta, data, card, $h4, puntaje, pais => pais.name.official)
+    crearOpciones(respuestaCorrecta, data, btn, $h4, puntaje, pais => pais.name.official)
 }
 
 function paisLimitrofe(pais, $h4, puntaje) {
@@ -91,13 +90,13 @@ function paisLimitrofe(pais, $h4, puntaje) {
             } else {
                 $h4.innerText = `Incorrecto. Tenía ${respuestaCorrecta} fronteras.`;
             }
-            card.appendChild($h4);
+            btn.appendChild($h4);
         });
-        card.appendChild($btn);
+        btn.appendChild($btn);
     });
 }
 
-function crearOpciones(respuestaCorrecta, data, card, $h4, puntaje, getOpcion) { // funcion para agregar botones con opciones y evento al selecionar una opcion
+function crearOpciones(respuestaCorrecta, data, btn, $h4, puntaje, getOpcion) { // funcion para agregar botones con opciones y evento al selecionar una opcion
     let opciones = [respuestaCorrecta]; // se agrega la respuesta correcta a las opciones
 
     while (opciones.length < 4) { // agregando otras opciones al array
@@ -120,8 +119,8 @@ function crearOpciones(respuestaCorrecta, data, card, $h4, puntaje, getOpcion) {
             } else {
                 $h4.innerText = `Incorrecto. La respuesta era: ${respuestaCorrecta}`;
             }
-            card.appendChild($h4);
+            btn.appendChild($h4);
         });
-        card.appendChild($btn);
+        btn.appendChild($btn);
     });
 }
