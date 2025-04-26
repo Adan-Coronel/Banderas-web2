@@ -4,6 +4,8 @@ const preguntas = ['¿Cual es el país de la siguiente ciudad capital?',
     '¿Cuantos países limítrofes tiene el siguiente país?'] // array con las preguntas por los puntos
 const card = document.getElementById('card') // card donde se agregaran las banderas y la pregunta
 const btn = document.getElementById('btn')// contenedor donde se deberian guardar los botones
+const nomJugador = document.getElementById(`nomJugador`)// contenedor para el nombre del jugador
+const nameJugador =localStorage.getItem(`nombreDelJugador`)
 fetch(url)
     .then(res => res.json())
     .then(data => {
@@ -13,10 +15,13 @@ fetch(url)
         let $h2 = document.createElement("h2"); // para agregar la pregunta al html
         let $h3 = document.createElement("h3"); // para agregar el pais al html
         let $h4 = document.createElement('h4');// para agregar si es correcta la respuesta al html
+        let $name= document.createElement(`p`)
         let puntaje = { valor: 0 };
         $h2.innerHTML = `${preguntas[pregIndex]} <br>`;
         card.appendChild($h2);
         console.log(data)
+        $name.textContent = nameJugador
+        nomJugador.appendChild($name)
         switch (pregIndex) {
             case 0://completo
 
