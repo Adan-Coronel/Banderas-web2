@@ -2,16 +2,21 @@ const url = 'https://restcountries.com/v3.1/all' //url del api con banderas
 const preguntas = ['¿Cual es el país de la siguiente ciudad capital?',
     'El país xx esta representado por la siguiente bandera ¿?',
     '¿Cuantos países limítrofes tiene el siguiente país?'] // array con las preguntas por los puntos
+
 let tiempo
 let actualizarTiempo
-let preguntasRespondidas = 0;
-
+let dataGlobal = [];
 document.addEventListener("DOMContentLoaded", () => {
+    let preguntasRespondidas = 0;
+    const nomJugador = document.getElementById(`nomJugador`)// contenedor para el nombre del jugador
+    const nameJugador = localStorage.getItem(`nombreDelJugador`)
+    let $name = document.createElement(`p`); // para agregar el nombre del jugador
+    $name.textContent = nameJugador //
+    nomJugador.appendChild($name)
+    let puntaje = { valor: 0 };
 
     const card = document.getElementById('card') // card donde se agregaran las banderas y la pregunta
     const btn = document.getElementById('btn')// contenedor donde se guardan los botones
-    const nomJugador = document.getElementById(`nomJugador`)// contenedor para el nombre del jugador
-    const nameJugador = localStorage.getItem(`nombreDelJugador`)
     /*bloque de funciones para las preguntas*/
     function preguntaBandera(pais, data, $h4, puntaje) {//funcion finalizada para agregar banderas
         const banderaUrl = pais.flags.png
@@ -45,10 +50,11 @@ document.addEventListener("DOMContentLoaded", () => {
             $btn.textContent = opcion;
             $btn.addEventListener('click', () => {
                 if (opcion === respuestaCorrecta) {
-                    puntaje.valor += 5;
                     $h4.innerText = `¡Correcto! Puntaje: ${puntaje.valor}`;
+                    siguientePreg()
                 } else {
                     $h4.innerText = `Incorrecto. Tenía ${respuestaCorrecta} fronteras.`;
+                    siguientePreg()
                 }
                 btn.appendChild($h4);
             });
@@ -76,8 +82,10 @@ document.addEventListener("DOMContentLoaded", () => {
                 if (opcion === respuestaCorrecta) {
                     puntaje.valor += 5;
                     $h4.innerText = `¡Correcto! Puntaje: ${puntaje.valor}`;
+                    siguientePreg()
                 } else {
                     $h4.innerText = `Incorrecto. La respuesta era: ${respuestaCorrecta}`;
+                    siguientePreg()
                 }
                 btn.appendChild($h4);
             });
@@ -103,48 +111,65 @@ document.addEventListener("DOMContentLoaded", () => {
         document.getElementById(`cronometro`).textContent = `Tiempo: ${minutosFormateados}:${segundosFormateados}`;
     }
 
+    function cargarPregunta(data, puntaje) {
 
-    cronometro() // inicializacion el cronometro
+        card.innerHTML = ``
+        btn.innerHTML = ``
+        const randomPais = Math.floor(Math.random() * data.length);
+        const pais = data[randomPais]; // constante para usar en funciones del arreglo del pais correcto
+        const pregIndex = Math.floor(Math.random() * preguntas.length)
+        let $h2 = document.createElement("h2"); // para agregar la pregunta al html
+        let $h3 = document.createElement("h3"); // para agregar el pais al html
+        let $h4 = document.createElement('h4');// para agregar si es correcta la respuesta al html
+
+
+        $h2.innerHTML = `${preguntas[pregIndex]} <br>`; // agregando la pregunta al contenedor
+        card.appendChild($h2);
+
+
+
+        switch (pregIndex) {
+            case 0://completo
+                const capital = pais.capital // capital a encontrar el pais
+                $h3.innerText += ` ${capital}`
+                card.appendChild($h3)
+                paisCapital(pais, data, $h4, puntaje)
+                break;
+            case 1://completo
+                preguntaBandera(pais, data, $h4, puntaje);
+                break;
+            case 2: //completo
+                console.log(randomPais)
+                const nacion = pais.name.official // capital a encontrar el pais
+                $h3.innerText += `${nacion} `;
+                card.appendChild($h3)
+                paisLimitrofe(pais, $h4, puntaje)
+                break;
+
+        }
+    }
+
+    function siguientePreg() {
+        btn.innerHTML = ''
+        const btnSiguiente = document.createElement('button');
+        btnSiguiente.textContent = 'Siguiente pregunta';
+        btnSiguiente.addEventListener('click', () => {
+            preguntasRespondidas++;
+            if (preguntasRespondidas < 5) {
+                cargarPregunta(dataGlobal, puntaje);
+            } else {
+                alert(`Juego terminado. Puntaje: ${puntaje.valor}`);
+            }
+        });
+        btn.appendChild(btnSiguiente);
+    }
 
     fetch(url)
         .then(res => res.json())
         .then(data => {
-            const randomPais = Math.floor(Math.random() * data.length);
-            const pais = data[randomPais]; // constante para usar en funciones del arreglo del pais correcto
-            const pregIndex = Math.floor(Math.random() * preguntas.length)
-            let $h2 = document.createElement("h2"); // para agregar la pregunta al html
-            let $h3 = document.createElement("h3"); // para agregar el pais al html
-            let $h4 = document.createElement('h4');// para agregar si es correcta la respuesta al html
-            let $name = document.createElement(`p`); // para agregar el nombre del jugador
-            let puntaje = { valor: 0 };
-            $h2.innerHTML = `${preguntas[pregIndex]} <br>`; // agregando la pregunta al contenedor
-            card.appendChild($h2);
-            console.log(data)
-            $name.textContent = nameJugador //
-            nomJugador.appendChild($name)
-            switch (pregIndex) {
-                case 0://completo
-
-                    const capital = pais.capital // capital a encontrar el pais
-                    $h3.innerText += ` ${capital}`
-                    card.appendChild($h3)
-                    paisCapital(pais, data, $h4, puntaje)
-                    break;
-
-                case 1://completo
-
-                    preguntaBandera(pais, data, $h4, puntaje);
-                    break;
-
-                case 2: //completo
-                    console.log(randomPais)
-                    const nacion = pais.name.official // capital a encontrar el pais
-                    $h3.innerText += `${nacion} `;
-                    card.appendChild($h3)
-                    paisLimitrofe(pais, $h4, puntaje)
-                    break;
-
-            }
+            dataGlobal = data;
+            cronometro() // inicializacion el cronometro
+            cargarPregunta(data, puntaje)
         })
         .catch((error) => {
             console.log(error)
