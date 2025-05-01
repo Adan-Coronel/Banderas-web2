@@ -1,6 +1,6 @@
 const url = 'https://restcountries.com/v3.1/all' //url del api con banderas
 const preguntas = ['¿Cual es el país de la siguiente ciudad capital?',
-    'El país xx esta representado por la siguiente bandera ¿?',
+    'Que pais es el de la siguiente bandera?',
     '¿Cuantos países limítrofes tiene el siguiente país?'] // array con las preguntas por los puntos
 
 let tiempo
@@ -111,6 +111,13 @@ document.addEventListener("DOMContentLoaded", () => {
         document.getElementById(`cronometro`).textContent = `Tiempo: ${minutosFormateados}:${segundosFormateados}`;
     }
 
+        const seg = segundos < 10 ? `0${segundos}` : `${segundos}`;
+
+
+        localStorage.setItem('tiempoFinal', `${min}:${seg}`);
+    }
+
+
     function cargarPregunta(data, puntaje) {
 
         card.innerHTML = ``
@@ -151,15 +158,23 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function siguientePreg() {
         btn.innerHTML = ''
+        if (preguntasRespondidas == 10) {
+
+            detenerCronometro();
+            const btnRanking = document.createElement('button');
+            btnRanking.textContent = 'Ver ranking';
+            btnRanking.addEventListener('click', () => {
+                window.location.href = 'rankings.html';
+            });
+
+            btn.appendChild(btnRanking);
+            return;
+        }
         const btnSiguiente = document.createElement('button');
         btnSiguiente.textContent = 'Siguiente pregunta';
         btnSiguiente.addEventListener('click', () => {
             preguntasRespondidas++;
-            if (preguntasRespondidas < 5) {
-                cargarPregunta(dataGlobal, puntaje);
-            } else {
-                alert(`Juego terminado. Puntaje: ${puntaje.valor}`);
-            }
+            cargarPregunta(dataGlobal, puntaje);
         });
         btn.appendChild(btnSiguiente);
     }
