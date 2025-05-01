@@ -111,6 +111,14 @@ document.addEventListener("DOMContentLoaded", () => {
         document.getElementById(`cronometro`).textContent = `Tiempo: ${minutosFormateados}:${segundosFormateados}`;
     }
 
+    function detenerCronometro() {
+        clearInterval(actualizarTiempo);
+        const totalSegs = Math.floor((Date.now() - tiempo) / 1000);
+
+        const minutos = Math.floor(totalSegs / 60);
+        const segundos = totalSegs % 60;
+
+        const min = minutos < 10 ? `0${minutos}` : `${minutos}`;
         const seg = segundos < 10 ? `0${segundos}` : `${segundos}`;
 
 
