@@ -152,5 +152,12 @@
     "correctas": 2,
     "incorrectas": 8,
     "tiempoTotal": 11
+  },
+  {
+    "nombre": "hola",
+    "puntaje": 8,
+    "correctas": 2,
+    "incorrectas": 8,
+    "tiempoTotal": 15
   }
 ]
