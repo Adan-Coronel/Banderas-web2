@@ -6,6 +6,9 @@ const preguntas = ['¿Cual es el país de la siguiente ciudad capital?',
 let tiempo
 let actualizarTiempo
 let dataGlobal = [];
+let preguntasCorrectas = 0
+let preguntasIncorrectas = 0
+
 document.addEventListener("DOMContentLoaded", () => {
     let preguntasRespondidas = 0;
     const nomJugador = document.getElementById(`nomJugador`)// contenedor para el nombre del jugador
@@ -21,7 +24,7 @@ document.addEventListener("DOMContentLoaded", () => {
     function preguntaBandera(pais, data, $h4, puntaje) {//funcion finalizada para agregar banderas
         const banderaUrl = pais.flags.png
         let nombreOficial = pais.name.official
-        $img = document.createElement("img")
+        const $img = document.createElement("img")
         $img.src = banderaUrl;
         $img.alt = `ya quisieras el nombre`
 
@@ -49,11 +52,15 @@ document.addEventListener("DOMContentLoaded", () => {
             const $btn = document.createElement('button');
             $btn.textContent = opcion;
             $btn.addEventListener('click', () => {
+                preguntasRespondidas++;
                 if (opcion === respuestaCorrecta) {
+                    puntaje.valor+=3
                     $h4.innerText = `¡Correcto! Puntaje: ${puntaje.valor}`;
+                    preguntasCorrectas++
                     siguientePreg()
                 } else {
                     $h4.innerText = `Incorrecto. Tenía ${respuestaCorrecta} fronteras.`;
+                    preguntasIncorrectas++
                     siguientePreg()
                 }
                 btn.appendChild($h4);
@@ -64,7 +71,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function crearOpciones(respuestaCorrecta, data, btn, $h4, puntaje, getOpcion) { // funcion para agregar botones con opciones y evento al selecionar una opcion
         let opciones = [respuestaCorrecta]; // se agrega la respuesta correcta a las opciones
-
         while (opciones.length < 4) { // agregando otras opciones al array
             const index = Math.floor(Math.random() * data.length);
             const nombre = getOpcion(data[index]);
@@ -72,19 +78,22 @@ document.addEventListener("DOMContentLoaded", () => {
                 opciones.push(nombre);
             }
         }
-
+        
         opciones.sort(() => Math.random() - 0.5); // mezclando las opciones para no aparecer siempre en el mismo lugar
-
+        
         opciones.forEach(opcion => { // creacion de botones para elegir opciones
             const $btn = document.createElement('button');
             $btn.textContent = opcion;
             $btn.addEventListener('click', () => {
+                preguntasRespondidas++;
                 if (opcion === respuestaCorrecta) {
                     puntaje.valor += 5;
                     $h4.innerText = `¡Correcto! Puntaje: ${puntaje.valor}`;
+                    preguntasCorrectas ++                    
                     siguientePreg()
                 } else {
                     $h4.innerText = `Incorrecto. La respuesta era: ${respuestaCorrecta}`;
+                    preguntasIncorrectas ++
                     siguientePreg()
                 }
                 btn.appendChild($h4);
@@ -123,6 +132,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
         localStorage.setItem('tiempoFinal', `${min}:${seg}`);
+        return totalSegs
     }
 
 
@@ -166,9 +176,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function siguientePreg() {
         btn.innerHTML = ''
-        if (preguntasRespondidas == 10) {
-
-            detenerCronometro();
+      
+        if (preguntasRespondidas >= 10) {
+            const tiempoFinal = detenerCronometro()
+            guardarResultado(puntaje, tiempoFinal)
             const btnRanking = document.createElement('button');
             btnRanking.textContent = 'Ver ranking';
             btnRanking.addEventListener('click', () => {
@@ -181,10 +192,34 @@ document.addEventListener("DOMContentLoaded", () => {
         const btnSiguiente = document.createElement('button');
         btnSiguiente.textContent = 'Siguiente pregunta';
         btnSiguiente.addEventListener('click', () => {
-            preguntasRespondidas++;
             cargarPregunta(dataGlobal, puntaje);
         });
         btn.appendChild(btnSiguiente);
+    }
+
+    function guardarResultado(puntaje, tiempoFinal) {
+        const nombre = localStorage.getItem(`nombreDelJugador`)
+        const resultado = {
+            nombre: nombre,
+            puntaje: puntaje.valor,
+            correctas: preguntasCorrectas,
+            incorrectas: preguntasIncorrectas,
+            tiempoTotal: tiempoFinal,
+        }
+
+        fetch('/guardar-resultado', {
+            method: "Post",
+            headers: {
+                "content-Type": "application/json"
+            },
+            body: JSON.stringify(resultado),
+        })
+            .then((response) => response.json())
+            .then((data) => {
+                console.log(`resultado guardado :`, data.toString())
+            }).catch((error) => {
+                console.log(`error`, error)
+            })
     }
 
     fetch(url)
