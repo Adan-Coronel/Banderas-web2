@@ -3,12 +3,12 @@ let contenedor = document.getElementById(`centro`)
 const $casilla = Object.assign(document.createElement(`input`), {
     type: `Texte`,
     id: `nomJugador`,
-    placeholder: `Ingrese Su Nombre`
+    placeholder: `Ingrese su nombre`
 })
 
 //div contendor 
 contenedor.appendChild($casilla)
-$btn.textContent = `Iniciar Juego!!!`
+$btn.textContent = `Iniciar juego!!!`
 contenedor.appendChild($btn)
 const $h4 = document.createElement(`h4`)
 

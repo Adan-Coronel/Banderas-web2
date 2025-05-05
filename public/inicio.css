@@ -1,7 +1,13 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
 body {
     margin: 0;
     padding: 0;
     min-height: 100vh;
+    font-family: 'Quicksand', sans-serif;
     position: relative;
     display: flex;
     flex-direction: column;
@@ -9,16 +15,48 @@ body {
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
+    background-attachment: fixed;
+    color: #27363f;
 }
 
+/*diseño del cont principal*/
+.contenedor-principal {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    padding: 20px;
+}
+.cabecera h1 {
+    font-family: 'Poppins', sans-serif;
+    color: #27363f;
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+}.subtitulo {
+    font-size: 1.1rem;
+    color: #5a6e77;
+    background-color: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(5px);
+    border-radius: 2px;
+    contain: content;
+}.contenido-principal {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 30px;
+}
+
+
 /*diseño del div central*/
-#centro {
+#centro, .tarjeta-inicio {
     margin: auto;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    border: 10px solid #27363f;
+    border: 10px solid rgba(39, 54, 63, 0.8);
     border-radius: 15px;
     padding: 40px;
     box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
@@ -26,10 +64,10 @@ body {
     max-width: 500px;
     gap: 20px;
     backdrop-filter: blur(10px);
+    background-color: rgba(255, 255, 255, 0.6);
 }
-
 /*diseño botones*/
-button {
+button, .boton-ranking {
     background-color: #27363f;
     color: rgb(255, 255, 255);
     border: none;
@@ -41,17 +79,70 @@ button {
     transition: all 0.2s ease;
     font-weight: 500;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    text-decoration: none;
+    display: inline-block;
+    text-align: center;
+    font-family: 'Quicksand', sans-serif;
 }
 
-button:hover {
-    background-color: #2980b9;
+button:hover, .boton-ranking:hover {
+    background-color: #3a4f5c;
     transform: translateY(-2px);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
 }
+.boton-ranking {
+    background-color: #8b5a2b;
+    margin-top: 20px;
+}
 
+.boton-ranking:hover {
+    background-color: #a06c33;
+}
+
+.botones-navegacion {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+
+/* para el input */
+#nomJugador {
+    width: 100%;
+    padding: 12px 15px;
+    border: 2px solid rgba(39, 54, 63, 0.5);
+    border-radius: 8px;
+    font-size: 16px;
+    background-color: rgba(255, 255, 255, 0.8);
+    color: #27363f;
+    font-family: 'Quicksand', sans-serif;
+}
+
+#nomJugador:focus {
+    outline: none;
+    border-color: #27363f;
+    box-shadow: 0 0 5px rgba(39, 54, 63, 0.3);
+}
+
+.pie-pagina {
+    text-align: center;
+    padding: 15px;
+    margin-top: 20px;
+    color: #27363f;
+    background-color: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(5px);
+    border-radius: 10px;
+}
 @media (max-width: 600px) {
-    #centro {
-        width: 90%;
+    .cabecera h1 {
+        font-size: 1.8rem;
+    }
+    #centro, .tarjeta-inicio {
+        width: 95%;
         padding: 30px 20px;
+    }
+    .botones-navegacion {
+        flex-direction: column;
+        align-items: center;
     }
 }
