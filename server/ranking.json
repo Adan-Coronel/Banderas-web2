@@ -14,6 +14,13 @@
     "tiempoTotal": 38
   },
   {
+    "nombre": "Carla",
+    "puntaje": 18,
+    "correctas": 4,
+    "incorrectas": 6,
+    "tiempoTotal": 13
+  },
+  {
     "nombre": "hola",
     "puntaje": 18,
     "correctas": 4,
@@ -133,6 +140,13 @@
     "tiempoTotal": 11
   },
   {
+    "nombre": "hola",
+    "puntaje": 10,
+    "correctas": 2,
+    "incorrectas": 8,
+    "tiempoTotal": 19
+  },
+  {
     "nombre": "jesus",
     "puntaje": 10,
     "correctas": 2,
@@ -196,10 +210,10 @@
     "tiempoTotal": 9
   },
   {
-    "nombre": "Carla",
-    "puntaje": 18,
-    "correctas": 4,
-    "incorrectas": 6,
+    "nombre": "hola",
+    "puntaje": 13,
+    "correctas": 3,
+    "incorrectas": 7,
     "tiempoTotal": 13
   }
 ]
