@@ -154,6 +154,13 @@
     "tiempoTotal": 33
   },
   {
+    "nombre": "Carla",
+    "puntaje": 10,
+    "correctas": 2,
+    "incorrectas": 8,
+    "tiempoTotal": 60
+  },
+  {
     "nombre": "hola",
     "puntaje": 8,
     "correctas": 2,
@@ -190,9 +197,9 @@
   },
   {
     "nombre": "Carla",
-    "puntaje": 10,
-    "correctas": 2,
-    "incorrectas": 8,
-    "tiempoTotal": 60
+    "puntaje": 18,
+    "correctas": 4,
+    "incorrectas": 6,
+    "tiempoTotal": 13
   }
 ]
