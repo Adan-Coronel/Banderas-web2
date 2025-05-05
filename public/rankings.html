@@ -8,10 +8,33 @@
     <link rel="stylesheet" href="ranking.css">
 </head>
 <body>
-    <div id="lista">
-        <ul id="listRanking">
+    <div class="contenedor-ranking">
+        <header class="cabecera-ranking">
+            <h1>Los mejores jugadores</h1>
+            <p class="subtitulo">Siempre 10 en Geografía</p>
+        </header>
+        
+        <main class="contenido-ranking">
+            <div class="cargando" id="cargando">
+                <div class="ruedita"></div>
+                <p>Cargando ranking...</p>
+            </div>
             
-        </ul>
+            <div id="lista" class="lista-ranking">
+                <div class="fila-cabecera">
+                    <span class="posicion">Pos</span>
+                    <span class="nombre">Jugador</span>
+                    <span class="tiempo">Tiempo</span>
+                    <span class="puntos">Puntos</span>
+                </div>
+                <ul id="listRanking"></ul>
+            </div>
+        </main>
+        
+        <footer class="pie-ranking">
+            <button id="jugarOtraVez" class="boton-jugar">Jugar de nuevo</button>
+            <button id="inicio" class="boton-inicio">Volver al inicio</button>
+        </footer>
     </div>
     
 </body>

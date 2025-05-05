@@ -20,7 +20,29 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const card = document.getElementById('card') // card donde se agregaran las banderas y la pregunta
     const btn = document.getElementById('btn')// contenedor donde se guardan los botones
+    
+    
+    function actualizarProgreso() {
+        const total = preguntasCorrectas + preguntasIncorrectas;
+        const porcentaje = (total / 10) * 100;
+        const barraProgreso = document.getElementById('barra-avance');
+        if (barraProgreso) {
+            barraProgreso.style.width = `${porcentaje}%`;
+        }
+        
+        const elementoCorrectas = document.getElementById('correctas');
+        const elementoIncorrectas = document.getElementById('incorrectas');
+        
+        if (elementoCorrectas) {
+            elementoCorrectas.textContent = `Correctas: ${preguntasCorrectas}`;
+        }
+        
+        if (elementoIncorrectas) {
+            elementoIncorrectas.textContent = `Incorrectas: ${preguntasIncorrectas}`;
+        }
+    }
     /*bloque de funciones para las preguntas*/
+
     function preguntaBandera(pais, data, $h4, puntaje) {//funcion finalizada para agregar banderas
         const banderaUrl = pais.flags.png
         let nombreOficial = pais.name.official
@@ -175,7 +197,8 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     function siguientePreg() {
-        btn.innerHTML = ''
+        btn.innerHTML = '';
+        actualizarProgreso();
       
         if (preguntasRespondidas >= 10) {
             const tiempoFinal = detenerCronometro()
