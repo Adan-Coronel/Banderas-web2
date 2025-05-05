@@ -16,7 +16,7 @@ $btn.addEventListener(`click`, () => {
     const nombre = $casilla.value.trim();
     if (nombre !== '') {
         localStorage.setItem(`nombreDelJugador`, nombre)
-        window.location = `juego.html`
+        window.location = `juegos.html`
     } else {
         $h4.innerText = `Por favor Ingrese su nombre,
          Muchas Gracias!!`
