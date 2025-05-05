@@ -50,10 +50,9 @@ app.get('/ranking', (req, res) => {
   res.json(top20);
 });
 
-if (process.env.VERCEL !== '1') {
   app.listen(PORT, () => {
     console.log(`http://localhost:${PORT}`);
   });
-}
+
 
 module.exports = app;
