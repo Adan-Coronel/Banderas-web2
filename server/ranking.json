@@ -1,5 +1,12 @@
 [
   {
+    "nombre": "1515",
+    "puntaje": 36,
+    "correctas": 8,
+    "incorrectas": 2,
+    "tiempoTotal": 186
+  },
+  {
     "nombre": "flor",
     "puntaje": 26,
     "correctas": 6,
@@ -7,7 +14,7 @@
     "tiempoTotal": 12
   },
   {
-    "nombre": "da",
+    "nombre": "Damian",
     "puntaje": 19,
     "correctas": 5,
     "incorrectas": 5,
@@ -21,7 +28,7 @@
     "tiempoTotal": 13
   },
   {
-    "nombre": "hola",
+    "nombre": "Chiara",
     "puntaje": 18,
     "correctas": 4,
     "incorrectas": 6,
@@ -32,14 +39,14 @@
     "puntaje": 18,
     "correctas": 4,
     "incorrectas": 6,
-    "tiempoTotal": 1590
+    "tiempoTotal": 50
   },
   {
-    "nombre": "andres",
+    "nombre": "Andres",
     "puntaje": 18,
     "correctas": 4,
     "incorrectas": 6,
-    "tiempoTotal": 26619
+    "tiempoTotal": 119
   },
   {
     "nombre": "aaaaa",
@@ -54,6 +61,13 @@
     "correctas": 3,
     "incorrectas": 7,
     "tiempoTotal": 8
+  },
+  {
+    "nombre": "hola",
+    "puntaje": 13,
+    "correctas": 3,
+    "incorrectas": 7,
+    "tiempoTotal": 13
   },
   {
     "nombre": "dios",
@@ -175,6 +189,13 @@
     "tiempoTotal": 60
   },
   {
+    "nombre": "Carolina",
+    "puntaje": 9,
+    "correctas": 3,
+    "incorrectas": 7,
+    "tiempoTotal": 17
+  },
+  {
     "nombre": "hola",
     "puntaje": 8,
     "correctas": 2,
@@ -203,6 +224,13 @@
     "tiempoTotal": 12
   },
   {
+    "nombre": "hola",
+    "puntaje": 3,
+    "correctas": 1,
+    "incorrectas": 9,
+    "tiempoTotal": 38
+  },
+  {
     "nombre": "falta poco",
     "puntaje": 0,
     "correctas": 0,
@@ -210,10 +238,10 @@
     "tiempoTotal": 9
   },
   {
-    "nombre": "hola",
-    "puntaje": 13,
+    "nombre": "Carolina",
+    "puntaje": 9,
     "correctas": 3,
     "incorrectas": 7,
-    "tiempoTotal": 13
+    "tiempoTotal": 9
   }
 ]

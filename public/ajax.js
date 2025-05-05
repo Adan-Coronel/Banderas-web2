@@ -109,7 +109,8 @@ document.addEventListener("DOMContentLoaded", () => {
             $btn.addEventListener('click', () => {
                 preguntasRespondidas++;
                 if (opcion === respuestaCorrecta) {
-                    puntaje.valor += 5;
+
+                    puntaje.valor += 3;
                     $h4.innerText = `¡Correcto! Puntaje: ${puntaje.valor}`;
                     preguntasCorrectas ++                    
                     siguientePreg()
@@ -203,13 +204,7 @@ document.addEventListener("DOMContentLoaded", () => {
         if (preguntasRespondidas >= 10) {
             const tiempoFinal = detenerCronometro()
             guardarResultado(puntaje, tiempoFinal)
-            const btnRanking = document.createElement('button');
-            btnRanking.textContent = 'Ver ranking';
-            btnRanking.addEventListener('click', () => {
-                window.location.href = 'rankings.html';
-            });
 
-            btn.appendChild(btnRanking);
             return;
         }
         const btnSiguiente = document.createElement('button');
@@ -229,7 +224,7 @@ document.addEventListener("DOMContentLoaded", () => {
             incorrectas: preguntasIncorrectas,
             tiempoTotal: tiempoFinal,
         }
-
+        localStorage.setItem('ultimaPartida', JSON.stringify(resultado));
         fetch('/guardar-resultado', {
             method: "Post",
             headers: {
@@ -239,12 +234,15 @@ document.addEventListener("DOMContentLoaded", () => {
         })
             .then((response) => response.json())
             .then((data) => {
-                console.log(`resultado guardado :`, data.toString())
+                console.log(`resultado guardado :`, data.toString());
+                window.location.href = 'rankings.html?fromGame=true';
             }).catch((error) => {
-                console.log(`error`, error)
+                console.log(`error`, error);
+                window.location.href = 'rankings.html?fromGame=true';
             })
     }
 
+    
     fetch(url)
         .then(res => res.json())
         .then(data => {

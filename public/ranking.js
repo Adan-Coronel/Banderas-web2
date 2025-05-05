@@ -4,6 +4,29 @@ document.addEventListener('DOMContentLoaded', function() {
   const elementoUl = document.getElementById('listRanking');
   const botonJugar = document.getElementById('jugarOtraVez');
   const botonInicio = document.getElementById('inicio');
+
+  const resumenPartida = document.getElementById('resumen-partida');
+
+  const urlParams = new URLSearchParams(window.location.search);
+  const vieneDesdePantalla = urlParams.get('fromGame');
+  if (vieneDesdePantalla === 'true') {
+    const ultimaPartida = JSON.parse(localStorage.getItem('ultimaPartida') || '{}');
+    
+    if (ultimaPartida && ultimaPartida.nombre) {
+      document.getElementById('resumen-nombre').textContent = ultimaPartida.nombre;
+      document.getElementById('resumen-puntaje').textContent = `${ultimaPartida.puntaje} pts`;
+      document.getElementById('resumen-correctas').textContent = ultimaPartida.correctas;
+      document.getElementById('resumen-incorrectas').textContent = ultimaPartida.incorrectas;
+      
+      const minutos = Math.floor(ultimaPartida.tiempoTotal / 60).toString().padStart(2, '0');
+      const segundos = (ultimaPartida.tiempoTotal % 60).toString().padStart(2, '0');
+      document.getElementById('resumen-tiempo').textContent = `${minutos}:${segundos}`;
+      
+      resumenPartida.style.display = 'block';
+    }
+    
+    window.history.replaceState({}, document.title, 'rankings.html');
+  }
   elementoLista.style.display = 'none';
   fetch('/ranking')
   .then(res => res.json())

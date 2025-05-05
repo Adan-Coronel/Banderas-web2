@@ -3,9 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Ranking</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Quicksand:wght@400;600&display=swap" rel="stylesheet">
     <script src="ranking.js" defer></script>
     <link rel="stylesheet" href="ranking.css">
+    <link rel="icon" href="assets/favicon.ico" type="image/x-icon">
 </head>
 <body>
     <div class="contenedor-ranking">
@@ -13,6 +17,32 @@
             <h1>Los mejores jugadores</h1>
             <p class="subtitulo">Siempre 10 en Geografía</p>
         </header>
+        <div id="resumen-partida" class="resumen-partida" style="display: none;">
+        <h2>Resumen de tu partida</h2>
+        <div class="tarjeta-resumen">
+            <div class="fila-resumen">
+                <span class="etiqueta">Jugador:</span>
+                <span id="resumen-nombre" class="valor"></span>
+            </div>
+            <div class="fila-resumen">
+                <span class="etiqueta">Puntaje total:</span>
+                <span id="resumen-puntaje" class="valor"></span>
+            </div>
+            <div class="fila-resumen">
+                <span class="etiqueta">Respuestas correctas:</span>
+                <span id="resumen-correctas" class="valor"></span>
+            </div>
+            <div class="fila-resumen">
+                <span class="etiqueta">Respuestas incorrectas:</span>
+                <span id="resumen-incorrectas" class="valor"></span>
+            </div>
+            <div class="fila-resumen">
+                <span class="etiqueta">Tiempo total:</span>
+                <span id="resumen-tiempo" class="valor"></span>
+            </div>
+        </div>
+    </div>
+     
         
         <main class="contenido-ranking">
             <div class="cargando" id="cargando">
