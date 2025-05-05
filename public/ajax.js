@@ -53,13 +53,13 @@ document.addEventListener("DOMContentLoaded", () => {
         card.appendChild($img) // agregando la imagen bandera
 
         let opciones = [nombreOficial]
-        crearOpciones(opciones, data, btn, $h4, puntaje, pais => pais.name.official)
+        crearOpciones(opciones, data, btn, $h4, puntaje, pais => pais.name.official, 5)
 
     }
 
     function paisCapital(pais, data, $h4, puntaje) {
         const respuestaCorrecta = pais.name.official;
-        crearOpciones(respuestaCorrecta, data, btn, $h4, puntaje, pais => pais.name.official)
+        crearOpciones(respuestaCorrecta, data, btn, $h4, puntaje, pais => pais.name.official, 3)
     }
 
     function paisLimitrofe(pais, $h4, puntaje) {
@@ -91,7 +91,7 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    function crearOpciones(respuestaCorrecta, data, btn, $h4, puntaje, getOpcion) { // funcion para agregar botones con opciones y evento al selecionar una opcion
+    function crearOpciones(respuestaCorrecta, data, btn, $h4, puntaje, getOpcion, puntosPorRespuesta = 3) { // funcion para agregar botones con opciones y evento al selecionar una opcion
         let opciones = [respuestaCorrecta]; // se agrega la respuesta correcta a las opciones
         while (opciones.length < 4) { // agregando otras opciones al array
             const index = Math.floor(Math.random() * data.length);
@@ -110,7 +110,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 preguntasRespondidas++;
                 if (opcion === respuestaCorrecta) {
 
-                    puntaje.valor += 3;
+                    puntaje.valor += puntosPorRespuesta;
                     $h4.innerText = `¡Correcto! Puntaje: ${puntaje.valor}`;
                     preguntasCorrectas ++                    
                     siguientePreg()

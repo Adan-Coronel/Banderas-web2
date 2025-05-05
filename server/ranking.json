@@ -1,11 +1,5 @@
 [
-  {
-    "nombre": "1515",
-    "puntaje": 36,
-    "correctas": 8,
-    "incorrectas": 2,
-    "tiempoTotal": 186
-  },
+
   {
     "nombre": "flor",
     "puntaje": 26,
@@ -56,6 +50,13 @@
     "tiempoTotal": 13
   },
   {
+    "nombre": "Carolina",
+    "puntaje": 15,
+    "correctas": 5,
+    "incorrectas": 5,
+    "tiempoTotal": 21
+  },
+  {
     "nombre": "ya cas",
     "puntaje": 15,
     "correctas": 3,
@@ -68,6 +69,13 @@
     "correctas": 3,
     "incorrectas": 7,
     "tiempoTotal": 13
+  },
+  {
+    "nombre": "Carolina",
+    "puntaje": 12,
+    "correctas": 4,
+    "incorrectas": 6,
+    "tiempoTotal": 121
   },
   {
     "nombre": "dios",
@@ -193,6 +201,13 @@
     "puntaje": 9,
     "correctas": 3,
     "incorrectas": 7,
+    "tiempoTotal": 9
+  },
+  {
+    "nombre": "Carolina",
+    "puntaje": 9,
+    "correctas": 3,
+    "incorrectas": 7,
     "tiempoTotal": 17
   },
   {
@@ -239,9 +254,9 @@
   },
   {
     "nombre": "Carolina",
-    "puntaje": 9,
-    "correctas": 3,
-    "incorrectas": 7,
-    "tiempoTotal": 9
+    "puntaje": 22,
+    "correctas": 6,
+    "incorrectas": 4,
+    "tiempoTotal": 121
   }
 ]
