@@ -197,3 +197,24 @@ h1 {
   .boton-inicio:hover {
     background-color: #6c7a7d;
   }
+
+  @media (max-width: 600px) {
+    .cabecera-ranking h1 {
+      font-size: 1.5rem;
+    }
+    
+    .fila-cabecera,
+    #listRanking li {
+      grid-template-columns: 0.5fr 1.5fr 1fr 1fr;
+      font-size: 0.9rem;
+      padding: 12px 10px;
+    }
+    
+    .pie-ranking {
+      flex-direction: column;
+    }
+    
+    button {
+      width: 100%;
+    }
+  }
