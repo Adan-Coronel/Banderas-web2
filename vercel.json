@@ -6,12 +6,17 @@
             "use": "@vercel/node"
         },
         {
-            "src": "public/**/*",
+            "src": "public/**",
             "use": "@vercel/static"
         }
     ],
     "routes": [
-       { "src": "/(.*\\.[a-z]+)$", "dest": "/$1" },
-  { "src": "/(.*)",         "dest": "/$1" }
+        {
+            "src": "/guardar-resultado", "dest":"server/index.js"
+        },{
+            "src":"/ranking", "dest":"server/index.js"
+        },{
+            "src":"/(.*)", "dest":"/public/$1"
+        }
     ]
 }
