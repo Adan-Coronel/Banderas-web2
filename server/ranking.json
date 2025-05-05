@@ -7,6 +7,20 @@
     "tiempoTotal": 12
   },
   {
+    "nombre": "da",
+    "puntaje": 19,
+    "correctas": 5,
+    "incorrectas": 5,
+    "tiempoTotal": 38
+  },
+  {
+    "nombre": "Florcis",
+    "puntaje": 18,
+    "correctas": 4,
+    "incorrectas": 6,
+    "tiempoTotal": 1590
+  },
+  {
     "nombre": "andres",
     "puntaje": 18,
     "correctas": 4,
@@ -98,6 +112,13 @@
     "tiempoTotal": 19
   },
   {
+    "nombre": "holi",
+    "puntaje": 10,
+    "correctas": 2,
+    "incorrectas": 8,
+    "tiempoTotal": 11
+  },
+  {
     "nombre": "jesus",
     "puntaje": 10,
     "correctas": 2,
@@ -110,6 +131,13 @@
     "correctas": 2,
     "incorrectas": 8,
     "tiempoTotal": 33
+  },
+  {
+    "nombre": "hola",
+    "puntaje": 8,
+    "correctas": 2,
+    "incorrectas": 8,
+    "tiempoTotal": 15
   },
   {
     "nombre": "ronaldo",
@@ -140,24 +168,10 @@
     "tiempoTotal": 9
   },
   {
-    "nombre": "da",
-    "puntaje": 19,
-    "correctas": 5,
-    "incorrectas": 5,
-    "tiempoTotal": 38
-  },
-  {
-    "nombre": "holi",
+    "nombre": "Florchis",
     "puntaje": 10,
     "correctas": 2,
     "incorrectas": 8,
-    "tiempoTotal": 11
-  },
-  {
-    "nombre": "hola",
-    "puntaje": 8,
-    "correctas": 2,
-    "incorrectas": 8,
-    "tiempoTotal": 15
+    "tiempoTotal": 23
   }
 ]

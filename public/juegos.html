@@ -3,20 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Juego de Geografía</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Quicksand:wght@400;600&display=swap" rel="stylesheet">
     <script src="ajax.js" defer></script>
     <link rel="stylesheet" href="diseño.css">
 </head>
 <body>
-    <div id="cardStile">
-        <div id="cronometro">
+    <div class="contenedor-juego">
+        <header class="cabecera-juego">
+        <div id="cronometro" class="reloj">00:00
         </div>
-        <div id="nomJugador">
+        <div id="nomJugador" class="nombre-jugador">
         </div>
-        
-        <div id="card">       
-    </div>
-    <div id="btn"></div>
+    </header>
+    <main class="contenido-juego">
+        <div id="card" class="tarjeta-pregunta"></div>
+        <div id="btn" class="contenedor-opciones"></div>
+    </main>
+    <footer class="pie-juego">
+        <div class="barra-progreso">
+            <div class="progreso" id="barra-avance"></div>
+        </div>
+        <div class="estadisticas">
+            <span id="correctas" class="aciertos">Correctas: 0</span>
+            <span id="incorrectas" class="fallos">Incorrectas: 0</span>
+        </div>
+    </footer>
 </div>
 </body>
 </html>
