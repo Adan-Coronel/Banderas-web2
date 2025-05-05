@@ -189,4 +189,19 @@ button:hover {
   }
   
 
-  /*falta responsive*/
+ /*responsive que funciona fuck yeah*/
+ @media (max-width: 600px) {
+  .cabecera-juego {
+    flex-direction: column;
+    gap: 10px;
+    text-align: center;
+  }
+  
+  .contenedor-opciones {
+    grid-template-columns: 1fr;
+  }
+  
+  button {
+    padding: 12px 16px;
+  }
+}
